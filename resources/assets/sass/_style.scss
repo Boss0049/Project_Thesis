@@ -1,0 +1,441 @@
+@import "./app.scss";
+// color
+$font-color: #262626;
+
+$blue-1: #d9eaf9;
+$blue-2: #a5d1ff;
+$blue-3: #419fff;
+$blue-4: #006ad8;
+$blue-5: #83a8ce;
+
+$gray-1: #f8f8f8;
+$gray-2: #dcdcdc;
+$gray-3: #aeaeae;
+$gray-4: #505050;
+
+$white: #fff;
+$black: #000;
+
+$pink: #fc8b8b;
+$green: #00c5c5;
+$purple: #c479db;
+
+$true: #1be298;
+$false: #fc4d4d;
+$warning: #ffba31;
+
+// font-type
+$title: "Athiti", sans-serif;
+$body: "Sarabun", serif;
+
+//for H4-TH Sarabun
+$h4: 15px;
+
+// font-size
+h1 {
+  font-size: 25px;
+  margin: 0px;
+  font-weight: normal;
+}
+h2 {
+  font-size: 22px;
+  margin: 0px;
+  font-weight: normal;
+}
+h3 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: normal;
+}
+h4 {
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 300;
+}
+h5 {
+  font-size: 12px;
+  margin: 0px;
+  font-weight: normal;
+}
+
+@media only screen and (max-width: 1024px) {
+  $h4: 10px;
+  h1 {
+    font-size: 23px !important;
+  }
+  h2 {
+    font-size: 20px !important;
+  }
+  h3 {
+    font-size: 18px !important;
+  }
+  h4 {
+    font-size: 15px !important;
+  }
+  h5 {
+    font-size: 10px !important;
+  }
+}
+
+// *********card*********
+%style-box {
+  background: $white;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px 1px $gray-2;
+  border-radius: 7px;
+  height: auto;
+}
+
+// *********input*********
+%style-input {
+  background: $white;
+  box-shadow: 0px 2px 5px 1px $gray-2;
+  border: 1px solid $gray-2;
+  border-radius: 7px;
+  outline: 0;
+  font-family: $body;
+  font-size: $h4;
+  color: $font-color;
+  &:focus {
+    border: 1px solid $blue-2;
+  }
+  &::placeholder {
+    color: $gray-2;
+  }
+}
+
+// *********style-btn*********
+.btn:disabled {
+  opacity: 1;
+  background: $blue-2 !important;
+}
+button {
+  background-color: $false;
+  &:focus {
+    box-shadow: none;
+  }
+}
+%style-btn {
+  background: $blue-4;
+  border-radius: 7px;
+  color: $white;
+  &:focus {
+    box-shadow: none;
+  }
+  &.cancel {
+    background: $white;
+    border: 2px solid $blue-4;
+    color: $blue-4;
+  }
+  h3 {
+    font-weight: 400;
+  }
+}
+
+// *********circle-btn*********
+%circle-btn {
+  height: 65px;
+  width: 65px;
+  border-radius: 50px;
+  background: $blue-2;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 120px 120px 70px 0;
+  z-index: 1;
+  .text-tooltip {
+    font-family: $title;
+    font-weight: 500;
+    color: $font-color;
+    position: absolute;
+    top: -40px;
+    left: -26px;
+    visibility: hidden;
+    width: max-content;
+  }
+  &:hover {
+    background: $blue-4;
+    .text-tooltip {
+      visibility: visible;
+    }
+  }
+}
+
+// *********custom-v-select-menu*********
+button.vs__clear {
+  display: none !important;
+}
+span.vs__selected {
+  color: $font-color !important;
+  border: none !important;
+  align-items: baseline !important;
+  text-align: left !important;
+}
+%style-dropdown {
+  background: $white;
+  font-family: $body;
+  font-size: $h4;
+  border-radius: 7px;
+  box-shadow: 1px 2px 5px 1px $gray-2;
+  .span.vs__selected {
+    background: $false !important;
+    width: 100%;
+  }
+  input {
+    &::placeholder {
+      color: $gray-2;
+    }
+  }
+}
+
+// *********custom-checkbox*********
+%custom-checkbox {
+  label {
+    display: inline-block;
+    position: relative;
+    font-family: $title;
+    font-size: 20px;
+    font-weight: 300;
+    appearance: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    padding-left: 40px;
+    cursor: pointer;
+  }
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  input[disabled] {
+    + .checkbox {
+      background-color: $gray-1;
+    }
+  }
+
+  /* Create a custom checkbox */
+  .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: $white;
+    border: 1px solid $gray-2;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px 1px $gray-2;
+  }
+  /* On mouse-over, add a grey background color */
+  label:hover input ~ .checkbox {
+    background-color: $gray-1;
+  }
+  /* When the checkbox is checked, add a blue background */
+  label input:checked ~ .checkbox {
+    background-color: $white;
+  }
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  /* Show the checkmark when checked */
+  label input:checked ~ .checkbox:after {
+    display: block;
+  }
+  /* Style the checkmark/indicator */
+  label .checkbox:after {
+    left: 9px;
+    top: 5px;
+    width: 6px;
+    height: 11px;
+    border: solid $blue-3;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+// *********custom-radio*********
+%custom-radio {
+  label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  /* Create a custom checkbox */
+  .radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px $gray-2;
+  }
+  /* On mouse-over, add a grey background color */
+  label:hover input ~ .radio {
+    background-color: $gray-1;
+  }
+  /* When the checkbox is checked, add a blue background */
+  label input:checked ~ .radio {
+    background-color: $blue-3;
+  }
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .radio:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  /* Show the checkmark when checked */
+  label input:checked ~ .radio:after {
+    display: block;
+  }
+  /* Style the checkmark/indicator */
+  label .radio:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+
+// *********section comment*********
+%comment {
+  margin: 0 auto;
+  color: $font-color;
+  background: $white;
+  box-shadow: 1px 1px 5px 1px $gray-2;
+  max-height: 350px;
+  border-radius: 7px;
+  border: none;
+  margin-bottom: 20px;
+  .space {
+    margin-bottom: 10px;
+  }
+  h4 {
+    display: inline;
+    margin-right: 5px;
+  }
+  h5 {
+    display: inline;
+    font-family: $body;
+    font-weight: 300;
+    color: $gray-3;
+  }
+  .body {
+    // margin: 5px 0;
+    h4 {
+      font-family: $body;
+      font-size: $h4;
+    }
+  }
+  .input-comment {
+    @extend %style-input;
+    width: 90%;
+    padding-left: 10px;
+    margin-top: 3px;
+  }
+  .send {
+    display: inline;
+    img {
+      width: 28px !important;
+      transform: rotate(45deg);
+      vertical-align: top;
+      cursor: pointer;
+    }
+  }
+}
+
+// *********modal*********
+.modal {
+  color: $font-color;
+  padding-right: 0 !important;
+  .modal-content {
+    margin: 0 auto;
+  }
+  .modal-header {
+    width: 100%;
+    padding: 10px 60px 5px 60px;
+    h2 {
+      font-family: $title;
+      font-weight: 500;
+      color: $font-color;
+    }
+    .close {
+      opacity: 1;
+      outline: 0;
+      font-size: 25px;
+      span {
+        vertical-align: middle !important;
+        font-weight: normal !important;
+      }
+    }
+  }
+  .modal-body {
+    width: 100%;
+    padding: 10px 60px;
+  }
+  .modal-footer {
+    width: 100%;
+    padding: 10px 60px 30px 60px;
+    border: none;
+  }
+}
+
+// *********custom-dropdown-item*********
+.drop-list {
+  color: $font-color;
+  min-width: auto;
+  padding: 0px;
+  border: 1px solid $blue-2;
+  box-shadow: 1px 1px 5px 1px $gray-2;
+  .dropdown-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 7px !important;
+    &:active {
+      background: $white;
+      color: $font-color;
+    }
+    &:hover {
+      background: $gray-1;
+    }
+    img {
+      width: 20px;
+    }
+    h4 {
+      display: inline;
+      vertical-align: middle;
+      font-family: $body;
+      font-size: $h4;
+      padding-left: 5px;
+    }
+  }
+  &.dropdown-menu.drop-list.show {
+    transform: unset !important;
+    top: auto !important;
+    left: auto !important;
+    right: 15px;
+    border-radius: 7px;
+  }
+}
